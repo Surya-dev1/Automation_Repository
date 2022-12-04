@@ -37,3 +37,20 @@ cd /var/log/apache2/;tar -cvf ${myname}_httpd-logs_${timestamp}.tar error.log ac
 cp ${myname}_httpd-logs_${timestamp}.tar error.log access.log /tmp;cd /tmp;ls -lrt
 
 aws s3 cp /tmp/ s3://${s3_bucket}/ --recursive --exclude "*.log"
+
+type="httpd-logs"
+format="tar"
+filename="${myname}_httpd-logs_${timestamp}.tar"
+myfilesize="$(cd /tmp;ls -lh $filename |awk '{print $5}')"
+
+awk 'BEGIN{print "Log-Type","Time-Created","Type","Size"}'
+echo " $type | $timestamp | $format | $myfilesize" >> /var/www/html/inventory.html
+
+if cd /etc/cron.d/;ls -lrt *automation*
+then
+
+        cat /etc/cron.d/automation
+else
+        cd/etc/cron.d;vi Automation;
+        00 11 * * * root /root/Automation_Project/Automation_Project-/automation.sh
+fi
