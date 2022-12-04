@@ -1,0 +1,1 @@
+Automation Script will install apache in ubuntu if not installed and enables it so that it will start automatically once the server is rebooted. Also will start apache if it is stopped. tar file is created by appending access.log & error.log files and uploaded to s3 bucket. 
