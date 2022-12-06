@@ -46,11 +46,10 @@ myfilesize="$(cd /tmp;ls -lh $filename |awk '{print $5}')"
 awk 'BEGIN{print "Log-Type","Time-Created","Type","Size"}'
 echo " $type | $timestamp | $format | $myfilesize" >> /var/www/html/inventory.html
 
-if cd /etc/cron.d/;ls -lrt *automation*
-then
-
-        cat /etc/cron.d/automation
-else
-        cd/etc/cron.d;vi Automation;
-        00 11 * * * root /root/Automation_Project/Automation_Project-/automation.sh
+if cd /etc/cron.d;ls -lrt *automation*
+then 
+echo "Cron is scheduled"
+else 
+cd /etc/cron.d/;touch automation;sudo echo "30 0 * * * root /root/Automation_Project/automation1.sh" > /etc/cron.d/automation;sudo chmod 600 /etc/cron.d/automation;
 fi
+
