@@ -50,7 +50,7 @@ if cd /etc/cron.d;ls -lrt *automation*
 then 
 echo "Cron is scheduled"
 else 
-cd /etc/cron.d/;touch automation;sudo echo "30 0 * * * root /root/Automation_Project/automation1.sh" > /etc/cron.d/automation;sudo chmod 600 automation;
+cd /etc/cron.d/;touch automation;sudo echo "00 11 * * * root /root/Automation_Project/automation1.sh" > /etc/cron.d/automation;sudo chmod 600 automation;
 ls -lrt;
 echo "Cron Job Created & Scheduled"
 fi
